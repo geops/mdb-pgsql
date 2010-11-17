@@ -1,0 +1,37 @@
+This script converts Microsoft Access 2000 MDB databases to postgresql SQL files
+without needing an installation of Microsoft Access itself.
+
+The hard work is done by the excellent mdb-sqlite.
+This script just uses the sqlite database to generate to posgresql insert from it
+
+Accordingly you need to install and build mdb-sqlite. The program can be downloaded
+at http://code.google.com/p/mdb-sqlite/
+See the build instructions there to build the JAR file.
+
+Usage
+-----
+
+Before using mdb-ppgsql the environment variable MDB_SQLITE_JAR with the
+path to the mdb-sqlite jar has to be set. Example:
+  export MDB_SQLITE_JAR=/home/myself/jars/mdb-sqlite.jar
+
+After that the script can be used like
+
+  mdb-pgsql.sh <mdb file> [<target schema>]
+
+The <target schema> parameter is optional. If not set, the schema
+"pubilc" will be used.
+
+The generated SQL will be written to the standard output. It is recommended
+to pipe it to a file.
+
+
+This script depends on
+----------------------
+
+- Java
+- The mdb-sqlite Jar
+- sqlite3 command line tool
+- various Unix tools like sed, tr, cat and grep
+
+
