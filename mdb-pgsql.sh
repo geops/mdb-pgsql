@@ -73,13 +73,14 @@ function sqlite_to_pgsql {
 
     echo "begin;"
     echo "set search_path to $SCHEMA_NAME;"
+    echo "set standard_conforming_strings=on;"
 
     # create a casts to cast ints/bigints to timestamp
     cat <<EOF
-create function sqlite3_datetime(bigint) returns timestamp without time zone as \$\$
+create or replace function sqlite3_datetime(bigint) returns timestamp without time zone as \$\$
 select (TIMESTAMP WITH TIME ZONE 'epoch ' + \$1/1000 * INTERVAL '1 second')::timestamp without time zone;
 \$\$ language sql;
-create function sqlite3_datetime(integer) returns timestamp without time zone as \$\$
+create or replace function sqlite3_datetime(integer) returns timestamp without time zone as \$\$
 select (TIMESTAMP WITH TIME ZONE 'epoch ' + \$1/1000 * INTERVAL '1 second')::timestamp without time zone;
 \$\$ language sql;
 
