@@ -5,7 +5,7 @@ The hard work is done by the excellent mdb-sqlite.
 This script just uses the sqlite database to generate to posgresql insert from it
 
 Accordingly you need to install and build mdb-sqlite. The program can be downloaded
-at http://code.google.com/p/mdb-sqlite/
+at https://github.com/tinogomes/mdb-sqlite
 See the build instructions there to build the JAR file.
 
 Usage
